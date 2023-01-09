@@ -7,10 +7,14 @@ void	turn_right(t_game *g)
 
 	old_dir_x = g->ray.direction.x;
 	old_plane_x = g->ray.plane.x;
-	g->ray.direction.x = old_dir_x * cos(TURN_SPEED) - g->ray.direction.y * sin(TURN_SPEED);
-	g->ray.direction.y = old_dir_x * sin(TURN_SPEED) + g->ray.direction.y * cos(TURN_SPEED);
-	g->ray.plane.x = old_plane_x * cos(TURN_SPEED) - g->ray.plane.y * sin(TURN_SPEED);
-	g->ray.plane.y = old_plane_x * sin(TURN_SPEED) + g->ray.plane.y * cos(TURN_SPEED);
+	g->ray.direction.x = old_dir_x * cos(TURN_SPEED) - g->ray.direction.y
+		* sin(TURN_SPEED);
+	g->ray.direction.y = old_dir_x * sin(TURN_SPEED) + g->ray.direction.y
+		* cos(TURN_SPEED);
+	g->ray.plane.x = old_plane_x * cos(TURN_SPEED) - g->ray.plane.y
+		* sin(TURN_SPEED);
+	g->ray.plane.y = old_plane_x * sin(TURN_SPEED) + g->ray.plane.y
+		* cos(TURN_SPEED);
 }
 
 void	turn_left(t_game *g)
@@ -20,10 +24,14 @@ void	turn_left(t_game *g)
 
 	old_dir_x = g->ray.direction.x;
 	old_plane_x = g->ray.plane.x;
-	g->ray.direction.x = old_dir_x * cos(-TURN_SPEED) - g->ray.direction.y * sin(-TURN_SPEED);
-	g->ray.direction.y = old_dir_x * sin(-TURN_SPEED) + g->ray.direction.y * cos(-TURN_SPEED);
-	g->ray.plane.x = old_plane_x * cos(-TURN_SPEED) - g->ray.plane.y * sin(-TURN_SPEED);
-	g->ray.plane.y = old_plane_x * sin(-TURN_SPEED) + g->ray.plane.y * cos(-TURN_SPEED);
+	g->ray.direction.x = old_dir_x * cos(-TURN_SPEED) - g->ray.direction.y
+		* sin(-TURN_SPEED);
+	g->ray.direction.y = old_dir_x * sin(-TURN_SPEED) + g->ray.direction.y
+		* cos(-TURN_SPEED);
+	g->ray.plane.x = old_plane_x * cos(-TURN_SPEED) - g->ray.plane.y
+		* sin(-TURN_SPEED);
+	g->ray.plane.y = old_plane_x * sin(-TURN_SPEED) + g->ray.plane.y
+		* cos(-TURN_SPEED);
 }
 
 void	turn_angle(t_game *g, int dir)
@@ -64,7 +72,7 @@ void	left_and_right(t_game *g, int dir)
 
 	x = (int)(g->ray.pos.x + g->ray.direction.y * g->rndr.move_speed);
 	y = (int)(g->ray.pos.y - g->ray.direction.x * g->rndr.move_speed);
-	if (dir == 2)
+	if (dir == 0)
 	{
 		if (g->ray.map[(int)g->ray.pos.y][x] == '0')
 			g->ray.pos.x += g->ray.direction.y * g->rndr.move_speed;
@@ -82,7 +90,7 @@ void	left_and_right(t_game *g, int dir)
 
 void	move(t_game *g, int key)
 {
-	if (key == 13|| key == 1)
+	if (key == 13 || key == 1)
 		back_and_forward(g, key);
 	else
 		left_and_right(g, key);
@@ -90,8 +98,7 @@ void	move(t_game *g, int key)
 
 int	key_hook(int key, t_game *g)
 {
-	// printf("key : %d\n", key);
-	g->rndr.move_speed = 0.08;
+	g->rndr.move_speed = 0.40;
 	if (key == 124)
 		turn_angle(g, key);
 	if (key == 123)
@@ -102,6 +109,5 @@ int	key_hook(int key, t_game *g)
 		move(g, key);
 	if (key == 53)
 		exit_game(g);
-	draw(g);
 	return (key);
 }

@@ -55,7 +55,6 @@ void	check_columns_rows(t_game *g)
 			is_enclosed(g, i);
 }
 
-//0 1 N S E W
 void	check_map(t_game *g)
 {
 	check_top_and_bottom(g);

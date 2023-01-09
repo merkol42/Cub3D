@@ -4,9 +4,9 @@
 void	get_color(t_img *img, int x, int y, int *color)
 {
 	char	*dst;
-	
+
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*color = *(unsigned int*)dst;
+	*color = *(unsigned int *)dst;
 }
 
 void	put_color_to_img(t_img *img, int x, int y, int color)
@@ -35,10 +35,6 @@ t_line	init_line(double start_x, double start_y, double angle, double len)
 	line.angle = angle;
 	line.end_x = start_x + len * cos(angle);
 	line.end_y = start_y + len * sin(angle);
-	// if (start_x < line.end_x)
-	// 	line.delta = (start_y - line.end_y) / (start_x - line.end_x);
-	// else
-	// 	line.delta = (line.end_y - start_y) / (line.end_x - start_x);
 	return (line);
 }
 

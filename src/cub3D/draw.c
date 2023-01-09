@@ -1,29 +1,5 @@
 #include "../../include/cub3d.h"
 
-// void fill_pixels(t_game *game, int color, int x, int y)
-// {
-//     *(int *)(game->image.addr + (y * game->image.size_len + x * game->image.bpp / 8)) = color;
-// }
-
-void	img_pix_put(t_img *img, int x, int y, int color)
-{
-	char	*pixel;
-	int		i;
-
-	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	while (i >= 0)
-	{
-		/* big endian, MSB is the leftmost bit */
-		if (img->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
-		/* little endian, LSB is the leftmost bit */
-		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}
-}
-
 void	render_background(t_game *g)
 {
 	int	i;
@@ -47,51 +23,66 @@ void	draw_player(t_game *g)
 {
 	int	x;
 	int	y;
+	int	poffset_x;
+	int	poffset_y;
 
 	x = -1;
 	y = -1;
-	while (++x < 8)
+	poffset_x = g->ray.player.x;
+	poffset_y = g->ray.player.y;
+	if (g->ray.player.y > 128)
+		poffset_y -= g->ray.player.y - 128;
+	if (g->ray.player.x > 128)
+		poffset_x -= g->ray.player.x - 128;
+	while (++x < 10)
 	{
 		y = -1;
-		while (++y < 8)
-			img_pix_put(&g->rndr.img, g->rndr.map.player_x + x, g->rndr.map.player_y + y, 0xFF);
+		while (++y < 10)
+			img_pix_put(&g->rndr.img, poffset_x + x, poffset_y + y, 0xFF);
 	}
 }
 
-//draw square with outline for minimap
-void	draw_square(t_game *g, int px, int py, int color)
+void	draw_map_x(t_game *g, int mapx, int mapy, int c)
 {
-	int	x;
-	int	y;
+	int	z;
 
-	y = -1;
-	while (++y < 9)
+	z = 0;
+	while (z < 256)
 	{
-		x = -1;
-		while (++x < 9)
-			img_pix_put(&g->rndr.img, x + px, y + py, color);
+		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
+			&& g->ray.map[(int)(mapy / 64)][(int)(mapx / 64)] == '1')
+			img_pix_put(&g->rndr.img, z, c, 0x00ffff);
+		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
+			&& !(mapy % 32))
+			img_pix_put(&g->rndr.img, z, c, 0);
+		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
+			&& !(mapx % 32))
+			img_pix_put(&g->rndr.img, z, c, 0);
+		mapx++;
+		z++;
 	}
 }
 
-void draw_minimap(t_game *g) // make editable later
+void	draw_minimap(t_game *g)
 {
-	int i;
-	int j;
+	int	mapx;
+	int	mapy;
+	int	c;
 
-	i = 0;
-	j = 0;
-	while (g->rndr.map.map[j])
+	mapx = 0;
+	mapy = 0;
+	c = 0;
+	if (g->ray.player.y > 128)
+		mapy = g->ray.player.y - 128;
+	while (c < 256)
 	{
-		i = 0;
-		while (g->rndr.map.map[j][i])
-		{
-			if (g->rndr.map.map[j][i] == '1')
-				draw_square(g, (i * 10), (j * 10), 0xfff000);
-			// else
-			//	draw_square(g, (i * 10), (j * 10), 0xffffff);
-			i++;
-		}
-		j++;
+		if (g->ray.player.x > 128)
+			mapx = g->ray.player.x - 128;
+		else
+			mapx = 0;
+		draw_map_x(g, mapx, mapy, c);
+		mapy++;
+		c++;
 	}
 }
 
@@ -100,7 +91,8 @@ void	draw(t_game *g)
 	mlx_clear_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 	render_background(g);
 	raycaster(&g->ray);
-	// draw_minimap(g);
-	// draw_player(g);
-	mlx_put_image_to_window(g->rndr.mlx_ptr, g->rndr.win_ptr, g->rndr.img.img_ptr, 0, 0);
+	draw_minimap(g);
+	draw_player(g);
+	mlx_put_image_to_window(g->rndr.mlx_ptr, g->rndr.win_ptr,
+		g->rndr.img.img_ptr, 0, 0);
 }

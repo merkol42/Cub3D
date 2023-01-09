@@ -18,8 +18,8 @@
 #define WHITE_PIXEL 0xFFFFFF
 #define GREY_PIXEL 0x808080
 
-#define WIN_WIDTH 2048
-#define WIN_HEIGHT 1080
+#define WIN_WIDTH 1024
+#define WIN_HEIGHT 1024
 
 #define FLOOR 0
 #define CEIL 1
@@ -113,6 +113,7 @@ typedef struct	s_ray
 	int			tile_size;
 	int			tex_x;
 	int			tex_y;
+	t_point		player;
 	t_line		line;
 	t_point		step;
 	t_point		pos;
@@ -191,7 +192,8 @@ void	texture(t_ray *r, int x);
 
 
 void	init_ray(t_game *g);
-int		frame(t_game *g);
+void	init_ray_number(t_game *g);
+void	init_ray_struct(t_game *g);
 
 void	line_draw(t_ray *r);
 #endif

@@ -3,7 +3,7 @@
 
 #include "cub3d.h"
 
-# define TURN_SPEED 0.05
+# define TURN_SPEED 0.20
 
 /////////////////////////////////////
 //geometry structs

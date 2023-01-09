@@ -24,7 +24,7 @@ int	get_texture_and_map(t_game *g)
 	g->rndr.map.res_width = get_longest_row(g->rndr.map.map);
 	g->rndr.map.res_height = dbl_array_size(g->rndr.map.map);
 	g->rndr.map.range = WIN_WIDTH;
-	g->rndr.move_speed= (g->rndr.map.tile_size / 2) / 5;
+	g->rndr.move_speed = (g->rndr.map.tile_size / 2) / 5;
 	return (0);
 }
 

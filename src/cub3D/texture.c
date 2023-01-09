@@ -12,7 +12,8 @@ static void	tex_setup(t_ray *r)
 			|| (r->side == 1 && r->ray_dir.y < 0))
 		r->tex_x = r->tile_size - r->tex_x - 1;
 	r->tex_step = r->tile_size / r->line.len;
-	r->tex_pos = (r->line.start_y - r->render.res_height / 2 + r->line.len / 2) * r->tex_step;
+	r->tex_pos = (r->line.start_y - r->render.res_height / 2 + r->line.len / 2)
+		* r->tex_step;
 }
 
 static void	determine_texture(t_ray *r, t_img *tex)
@@ -25,14 +26,6 @@ static void	determine_texture(t_ray *r, t_img *tex)
 		*tex = r->render.tex.imgs[SO];
 	else if (r->in_map.x - r->pos.x <= 0 && r->side == 0)
 		*tex = r->render.tex.imgs[NO];
-}
-
-void	shadow_to_texture(double dist, int *color)
-{
-	int transparency;
-
-	transparency = (int)fmin(((*color >> 24) + 0.1) * (dist * 600), 255);
-	*color = (transparency << 24 | *color);
 }
 
 void	texture(t_ray *r, int x)
@@ -49,7 +42,23 @@ void	texture(t_ray *r, int x)
 		r->tex_pos += r->tex_step;
 		determine_texture(r, &tex);
 		get_color(&tex, r->tex_x, r->tex_y, &color);
-		// shadow_to_texture(r->perp_wall_dist, &color);
 		put_color_to_img(&r->render.img, x, y, color);
+	}
+}
+
+void	img_pix_put(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
+	int		i;
+
+	i = img->bpp - 8;
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	while (i >= 0)
+	{
+		if (img->endian != 0)
+			*pixel++ = (color >> i) & 0xFF;
+		else
+			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+		i -= 8;
 	}
 }
