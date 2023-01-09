@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/09 16:06:46 by merkol            #+#    #+#             */
+/*   Updated: 2023/01/09 16:08:22 by merkol           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	exit_error(t_game *g, char *str)
@@ -26,7 +38,6 @@ void	free_assign_elems(t_game *g)
 
 int	exit_game(t_game *g)
 {
-	printf("(exit_game)Burdasın --> : %d\n", __LINE__);
 	if (g && g->rndr.mlx_ptr && g->rndr.win_ptr)
 	{
 		mlx_destroy_window(g->rndr.mlx_ptr, g->rndr.win_ptr);

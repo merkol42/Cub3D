@@ -42,7 +42,7 @@ fclean: clean
 	make -C mlx/ clean
 
 norm:
-	norminette $(SRCS)
+	norminette $(shell find src -name "*.c")
 
 #for debug
 print:
