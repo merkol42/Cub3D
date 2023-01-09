@@ -164,7 +164,7 @@ void	raycaster(t_ray *r)
 		ray_step_and_dist(r);
 		dda(r);
 		distance_and_line(r, i);
-		line_draw(r);
-		// texture(r, i);
+		// line_draw(r);
+		texture(r, i);
 	}
 }

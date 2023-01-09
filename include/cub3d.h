@@ -5,7 +5,6 @@
 # include "ray.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include <X11/keysym.h>
 # include <unistd.h>
 # include <math.h>
 # include "get_next_line.h"
@@ -19,8 +18,8 @@
 #define WHITE_PIXEL 0xFFFFFF
 #define GREY_PIXEL 0x808080
 
-#define WIN_WIDTH 1024
-#define WIN_HEIGHT 768
+#define WIN_WIDTH 2048
+#define WIN_HEIGHT 1080
 
 #define FLOOR 0
 #define CEIL 1

@@ -31,7 +31,7 @@ int	exit_game(t_game *g)
 	{
 		mlx_destroy_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.img.img_ptr);
-		mlx_destroy_display(g->rndr.mlx_ptr);
+		// mlx_destroy_display(g->rndr.mlx_ptr);
 		free(g->rndr.mlx_ptr);
 	}
 	if (g->rndr.map.fd_cub > STDERR_FILENO)

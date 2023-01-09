@@ -95,27 +95,12 @@ void draw_minimap(t_game *g) // make editable later
 	}
 }
 
-void	aim(t_game *g)
-{
-	t_line	line;
-
-	line.start_x = WIN_WIDTH / 2;
-	line.start_y = WIN_HEIGHT / 2 - 10;
-	line.end_x = WIN_WIDTH / 2;
-	line.end_y = WIN_HEIGHT / 2;
-	line.delta.x = line.end_x - line.start_x  < 0 ? -1 : 1;
-	line.delta.y = line.end_y - line.start_y  < 0 ? -1 : 1;
-	g->ray.line = line;
-	line_draw(&g->ray);
-}
-
 void	draw(t_game *g)
 {
-	// mlx_clear_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
+	mlx_clear_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 	render_background(g);
-	// aim(g);
 	raycaster(&g->ray);
 	// draw_minimap(g);
 	// draw_player(g);
-	// mlx_put_image_to_window(g->rndr.mlx_ptr, g->rndr.win_ptr, g->rndr.img.img_ptr, 0, 0);
+	mlx_put_image_to_window(g->rndr.mlx_ptr, g->rndr.win_ptr, g->rndr.img.img_ptr, 0, 0);
 }

@@ -1,6 +1,6 @@
 NAME	:= cub3d
 CC		:= gcc
-CFLAGS	:= -Wall -Werror -Wextra -g -Lmlx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+CFLAGS	:= -Wall -Werror -Wextra -g -Lmlx -lmlx -L/usr/lib -framework OpenGL -framework AppKit
 INCLUDE	:= -I./include
 OBJ_DIR	:= obj
 SRCS_DIR:= src/cub3D

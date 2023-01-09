@@ -49,7 +49,7 @@ void	texture(t_ray *r, int x)
 		r->tex_pos += r->tex_step;
 		determine_texture(r, &tex);
 		get_color(&tex, r->tex_x, r->tex_y, &color);
-		shadow_to_texture(r->perp_wall_dist, &color);
+		// shadow_to_texture(r->perp_wall_dist, &color);
 		put_color_to_img(&r->render.img, x, y, color);
 	}
 }
