@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:40 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 15:40:05 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:24:29 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	init_null(t_game *g)
 {
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		g->rndr.tex.imgs[i].path = NULL;
+		g->rndr.tex.imgs[i].img_ptr = NULL;
+	}
 	g->rndr.mlx_ptr = NULL;
 	g->rndr.win_ptr = NULL;
 	g->rndr.map.map = NULL;
-	g->rndr.tex.imgs[EA].path = NULL;
-	g->rndr.tex.imgs[SO].path = NULL;
-	g->rndr.tex.imgs[NO].path = NULL;
-	g->rndr.tex.imgs[WE].path = NULL;
 	g->rndr.map.gnl_buffer = NULL;
 	g->rndr.map.elem_count = 0;
 	g->rndr.map.fd_cub = -1;
 	g->rndr.map.tile_size = 64;
-	g->rndr.tex.imgs[EA].img_ptr = NULL;
-	g->rndr.tex.imgs[SO].img_ptr = NULL;
-	g->rndr.tex.imgs[NO].img_ptr = NULL;
-	g->rndr.tex.imgs[WE].img_ptr = NULL;
 	g->rndr.res_width = WIN_WIDTH;
 	g->rndr.res_height = WIN_HEIGHT;
 	g->rndr.move_speed = 0.1;
@@ -48,28 +48,18 @@ void	init_assets(t_game *g)
 {
 	int	x;
 	int	y;
+	int	i;
 
-	g->rndr.tex.imgs[EA].img_ptr = mlx_xpm_file_to_image(g->rndr.mlx_ptr,
-			g->rndr.tex.imgs[EA].path, &x, &y);
-	g->rndr.tex.imgs[NO].img_ptr = mlx_xpm_file_to_image(g->rndr.mlx_ptr,
-			g->rndr.tex.imgs[NO].path, &x, &y);
-	g->rndr.tex.imgs[SO].img_ptr = mlx_xpm_file_to_image(g->rndr.mlx_ptr,
-			g->rndr.tex.imgs[SO].path, &x, &y);
-	g->rndr.tex.imgs[WE].img_ptr = mlx_xpm_file_to_image(g->rndr.mlx_ptr,
-			g->rndr.tex.imgs[WE].path, &x, &y);
+	i = -1;
+	while (++i < 4)
+		g->rndr.tex.imgs[i].img_ptr = mlx_xpm_file_to_image(g->rndr.mlx_ptr,
+				g->rndr.tex.imgs[i].path, &x, &y);
 	check_imgptr(g);
-	g->rndr.tex.imgs[EA].addr = mlx_get_data_addr(g->rndr.tex.imgs[EA].img_ptr,
-			&g->rndr.tex.imgs[EA].bpp, &g->rndr.tex.imgs[EA].line_len,
-			&g->rndr.tex.imgs[EA].endian);
-	g->rndr.tex.imgs[NO].addr = mlx_get_data_addr(g->rndr.tex.imgs[NO].img_ptr,
-			&g->rndr.tex.imgs[NO].bpp, &g->rndr.tex.imgs[NO].line_len,
-			&g->rndr.tex.imgs[NO].endian);
-	g->rndr.tex.imgs[SO].addr = mlx_get_data_addr(g->rndr.tex.imgs[SO].img_ptr,
-			&g->rndr.tex.imgs[SO].bpp, &g->rndr.tex.imgs[SO].line_len,
-			&g->rndr.tex.imgs[SO].endian);
-	g->rndr.tex.imgs[WE].addr = mlx_get_data_addr(g->rndr.tex.imgs[WE].img_ptr,
-			&g->rndr.tex.imgs[WE].bpp, &g->rndr.tex.imgs[WE].line_len,
-			&g->rndr.tex.imgs[WE].endian);
+	i = -1;
+	while (++i < 4)
+		g->rndr.tex.imgs[i].addr = mlx_get_data_addr(g->rndr.tex.imgs[i].img_ptr,
+				&g->rndr.tex.imgs[i].bpp, &g->rndr.tex.imgs[i].line_len,
+				&g->rndr.tex.imgs[i].endian);
 }
 
 void	init_mlx(t_game *g)

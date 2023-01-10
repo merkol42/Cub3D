@@ -158,7 +158,7 @@ void	get_player_pos(t_game *g);
 int		print_dbl_arry(char **arr, char sep);
 int		free_dbl_arry(char **arr);
 int		dbl_array_size(char **arr);
-int		create_trgb(int t, int r, int g, int b);
+int	create_trgb(int t, int r, int g, int b);
 void	ft_array_join(t_game *g, char ***dst, char *src);
 int		is_white_space(char c);
 int		check_extension(char *file, char *extension);

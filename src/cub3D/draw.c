@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:05:19 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 15:29:18 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 17:10:52 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void	draw_player(t_game *g)
 		while (++y < 10)
 			img_pix_put(&g->rndr.img, poffset_x + x, poffset_y + y, 0xFF);
 	}
+}
+
+int	create_trgb1(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+{
+	return (*(int *)(unsigned char [4]){b, g, r, t});
 }
 
 void	draw_map_x(t_game *g, int mapx, int mapy, int c)
@@ -102,6 +107,16 @@ void	draw_minimap(t_game *g)
 
 void	draw(t_game *g)
 {
+	// int	x;
+	// int	y;
+
+	// x = -1;
+	// while (++x < WIN_WIDTH)
+	// {
+	// 	y = -1;
+	// 	while (++y < WIN_HEIGHT)
+	// 		img_pix_put(&g->rndr.img, x, y, create_trgb(255, 0, 0, 0));
+	// }
 	render_background(g);
 	raycaster(&g->ray);
 	draw_minimap(g);

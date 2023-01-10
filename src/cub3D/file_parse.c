@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:20 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 15:05:49 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:14:16 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	assign_color(t_game *gm, char *str, int flag)
 	r = ft_atoi(str);
 	g = ft_atoi(second);
 	b = ft_atoi(ft_strchr(second, ',') + 1);
-	printf("red : %d\ngreen : %d\nblue : %d\n", r, g, b);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 	{
 		free(str);
