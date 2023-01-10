@@ -1,10 +1,10 @@
-NO map_texture/textures/wall_1.xpm
-SO map_texture/textures/wall_2.xpm
-WE map_texture/textures/wall_3.xpm
-EA map_texture/textures/wall_4.xpm
+NO map_texture/textures/wood.xpm
+SO map_texture/textures/eagle.xpm
+WE map_texture/textures/redbrick.xpm
+EA map_texture/textures/bluestone.xpm
 
-F 120,100,0
-C 20,30,0
+F 0,100,130
+C 100,100,0
 
         1111111111111111111111111
         1000000000110000000000001
