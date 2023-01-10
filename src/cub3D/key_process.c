@@ -19,7 +19,7 @@ void	back_and_forward(t_game *g, int dir)
 
 	x = (int)(g->ray.pos.x + g->ray.direction.x * g->rndr.move_speed);
 	y = (int)(g->ray.pos.y + g->ray.direction.y * g->rndr.move_speed);
-	if (dir == 13)
+	if (dir == KEY_W)
 	{
 		if (g->ray.map[(int)g->ray.pos.y][x] == '0')
 			g->ray.pos.x += g->ray.direction.x * g->rndr.move_speed;
@@ -42,7 +42,7 @@ void	left_and_right(t_game *g, int dir)
 
 	x = (int)(g->ray.pos.x + g->ray.direction.y * g->rndr.move_speed);
 	y = (int)(g->ray.pos.y - g->ray.direction.x * g->rndr.move_speed);
-	if (dir == 0)
+	if (dir == KEY_A)
 	{
 		if (g->ray.map[(int)g->ray.pos.y][x] == '0')
 			g->ray.pos.x += g->ray.direction.y * g->rndr.move_speed;
@@ -60,7 +60,7 @@ void	left_and_right(t_game *g, int dir)
 
 void	move(t_game *g, int key)
 {
-	if (key == 13 || key == 1)
+	if (key == KEY_W || key == KEY_S)
 		back_and_forward(g, key);
 	else
 		left_and_right(g, key);
@@ -69,15 +69,13 @@ void	move(t_game *g, int key)
 int	key_hook(int key, t_game *g)
 {
 	g->rndr.move_speed = 0.40;
-	if (key == 124)
+	if (key == KEY_RIGHT || key == KEY_LEFT)
 		turn_angle(g, key);
-	if (key == 123)
-		turn_angle(g, key);
-	if (key == 13 || key == 1)
+	if (key == KEY_W || key == KEY_S)
 		move(g, key);
-	if (key == 0 || key == 2)
+	if (key == KEY_A || key == KEY_D)
 		move(g, key);
-	if (key == 53)
+	if (key == ESC)
 		exit_game(g);
 	return (key);
 }

@@ -48,8 +48,8 @@ void	turn_left(t_game *g)
 
 void	turn_angle(t_game *g, int dir)
 {
-	if (dir == 124)
+	if (dir == KEY_RIGHT)
 		turn_right(g);
-	if (dir == 123)
+	if (dir == KEY_LEFT)
 		turn_left(g);
 }

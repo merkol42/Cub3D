@@ -22,9 +22,14 @@ int	get_texture_and_map(t_game *g)
 		buffer = get_next_line(g->rndr.map.fd_cub);
 		if (!buffer)
 			break ;
-		if (!ft_strncmp(buffer, "\n", 1) && ft_strlen(buffer) == 1 \
-			&& g->rndr.map.elem_count != 6)
+		if (!ft_strncmp(buffer, "\n", 1) && ft_strlen(buffer) == 1)
 		{
+			if (g->rndr.map.elem_count == 6)
+			{
+				g->rndr.map.gnl_buffer = buffer;
+				gnl_free(g->rndr.map.gnl_buffer, g->rndr.map.fd_cub);
+				exit_error(g, "Map Error!!\n");
+			}
 			free(buffer);
 			continue ;
 		}
@@ -34,10 +39,6 @@ int	get_texture_and_map(t_game *g)
 			ft_array_join(g, &g->rndr.map.map, ft_strtrim(buffer, "\n"));
 		free(buffer);
 	}
-	g->rndr.map.res_width = get_longest_row(g->rndr.map.map);
-	g->rndr.map.res_height = dbl_array_size(g->rndr.map.map);
-	g->rndr.map.range = WIN_WIDTH;
-	g->rndr.move_speed = (g->rndr.map.tile_size / 2) / 5;
 	return (0);
 }
 
@@ -106,6 +107,9 @@ void	file_parse(t_game	*g, char *cub)
 		exit_error(g, "Bad Extension!!\n");
 	open_cub(g, cub);
 	get_texture_and_map(g);
+	g->rndr.map.res_width = get_longest_row(g->rndr.map.map);
+	g->rndr.map.res_height = dbl_array_size(g->rndr.map.map);
+	g->rndr.move_speed = (g->rndr.map.tile_size / 2) / 5;
 	check_path(g);
 	check_map(g);
 }

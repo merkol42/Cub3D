@@ -55,13 +55,14 @@ int	exit_game(t_game *g)
 		mlx_destroy_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.img.img_ptr);
 		free_texture(g);
+		mlx_destroy_display(g->rndr.mlx_ptr);
 		free(g->rndr.mlx_ptr);
 	}
 	if (g->rndr.map.fd_cub > STDERR_FILENO)
 		close(g->rndr.map.fd_cub);
 	free_assign_elems(g);
 	free_dbl_arry(g->rndr.map.map);
-	exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 

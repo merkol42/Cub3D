@@ -24,6 +24,15 @@
 #define FLOOR 0
 #define CEIL 1
 
+#define KEY_W 119 //13
+#define KEY_A 97 //0
+#define KEY_S 115 //1
+#define KEY_D 100 //2
+#define KEY_LEFT 65361 // 123
+#define KEY_RIGHT 65363 // 124
+#define ESC 65307 // 53
+
+
 enum tex_enum{
 	NO,
 	WE,
