@@ -18,8 +18,8 @@
 #define WHITE_PIXEL 0xFFFFFF
 #define GREY_PIXEL 0x808080
 
-#define WIN_WIDTH 1920
-#define WIN_HEIGHT 1080
+#define WIN_WIDTH 800
+#define WIN_HEIGHT 600
 
 #define FLOOR 0
 #define CEIL 1

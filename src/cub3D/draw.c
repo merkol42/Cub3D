@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:05:19 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/09 16:06:20 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:19:38 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,8 @@ void	draw_minimap(t_game *g)
 
 void	draw(t_game *g)
 {
-	mlx_clear_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 	render_background(g);
 	raycaster(&g->ray);
 	draw_minimap(g);
 	draw_player(g);
-	mlx_put_image_to_window(g->rndr.mlx_ptr, g->rndr.win_ptr,
-		g->rndr.img.img_ptr, 0, 0);
 }

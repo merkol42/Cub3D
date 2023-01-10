@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:20 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 10:06:11 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 13:51:03 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,24 @@ void	assign_path_and_color(t_game *g, char *buffer)
 	g->rndr.map.elem_count++;
 }
 
+void	check_path(t_game *g)
+{
+	if (!check_extension(g->rndr.tex.imgs[NO].path, ".xpm"))
+		exit_error(g, "xpm extension error!!\n");
+	if (!check_extension(g->rndr.tex.imgs[EA].path, ".xpm"))
+		exit_error(g, "xpm extension error!!\n");
+	if (!check_extension(g->rndr.tex.imgs[SO].path, ".xpm"))
+		exit_error(g, "xpm extension error!!\n");
+	if (!check_extension(g->rndr.tex.imgs[WE].path, ".xpm"))
+		exit_error(g, "xpm extension error!!\n");
+}
+
 void	file_parse(t_game	*g, char *cub)
 {
 	if (!check_extension(cub, ".cub"))
 		exit_error(g, "Bad Extension!!\n");
 	open_cub(g, cub);
 	get_texture_and_map(g);
+	check_path(g);
 	check_map(g);
 }

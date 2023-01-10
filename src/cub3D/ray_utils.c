@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftuncer <ftuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:53 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/09 16:12:27 by ftuncer          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:02:09 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ void	init_direction(t_game *g, char start)
 {
 	g->ray.plane = assign_point(0, 0);
 	g->ray.direction = assign_point(0, 0);
-	if (start == 'N')
+	if (start == 'W')
 	{
 		g->ray.direction.x = -g->ray.fov;
 		g->ray.plane.y = g->ray.fov;
 	}
-	else if (start == 'S')
+	else if (start == 'E')
 	{
 		g->ray.direction.x = g->ray.fov;
 		g->ray.plane.y = -g->ray.fov;
 	}
-	else if (start == 'E')
+	else if (start == 'S')
 	{
 		g->ray.direction.y = g->ray.fov;
 		g->ray.plane.x = g->ray.fov;
 	}
-	else if (start == 'W')
+	else if (start == 'N')
 	{
 		g->ray.direction.y = -g->ray.fov;
 		g->ray.plane.x = -g->ray.fov;
