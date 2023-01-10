@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:06:46 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/09 16:08:22 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:17:13 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,25 @@ void	free_assign_elems(t_game *g)
 		free(g->rndr.tex.imgs[NO].path);
 }
 
+void	free_texture(t_game *g)
+{
+	if (g->rndr.tex.imgs[EA].img_ptr)
+		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.tex.imgs[EA].img_ptr);
+	if (g->rndr.tex.imgs[SO].img_ptr)
+		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.tex.imgs[SO].img_ptr);
+	if (g->rndr.tex.imgs[WE].img_ptr)
+		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.tex.imgs[WE].img_ptr);
+	if (g->rndr.tex.imgs[NO].img_ptr)
+		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.tex.imgs[NO].img_ptr);
+}
+
 int	exit_game(t_game *g)
 {
 	if (g && g->rndr.mlx_ptr && g->rndr.win_ptr)
 	{
 		mlx_destroy_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.img.img_ptr);
+		free_texture(g);
 		free(g->rndr.mlx_ptr);
 	}
 	if (g->rndr.map.fd_cub > STDERR_FILENO)
