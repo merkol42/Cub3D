@@ -67,10 +67,10 @@ void	draw_map_x(t_game *g, int mapx, int mapy, int c)
 	z = 0;
 	while (z < 256)
 	{
-		get_color(&g->rndr.tex.imgs[EA], mapx % 64, mapy % 64, &color);
+		get_color(&g->rndr.tex.imgs[0], mapx % 64, mapy % 64, &color);
 		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
 			&& g->ray.map[(int)(mapy / 64)][(int)(mapx / 64)] == '1')
-			img_pix_put(&g->rndr.img, z, c, color);
+			img_pix_put(&g->rndr.img, z, c, color >> 1);
 		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
 			&& !(mapy % 16))
 			img_pix_put(&g->rndr.img, z, c, 0);
