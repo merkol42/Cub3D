@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:05:19 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 14:19:38 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 15:29:18 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ void	draw_player(t_game *g)
 void	draw_map_x(t_game *g, int mapx, int mapy, int c)
 {
 	int	z;
+	int	color;
 
 	z = 0;
 	while (z < 256)
 	{
+		get_color(&g->rndr.tex.imgs[EA], mapx % 64, mapy % 64, &color);
 		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
 			&& g->ray.map[(int)(mapy / 64)][(int)(mapx / 64)] == '1')
-			img_pix_put(&g->rndr.img, z, c, 0x00ffff);
+			img_pix_put(&g->rndr.img, z, c, color);
 		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
 			&& !(mapy % 16))
 			img_pix_put(&g->rndr.img, z, c, 0);

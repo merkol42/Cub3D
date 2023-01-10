@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:40 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 12:37:30 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/10 15:40:05 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ void	init_null(t_game *g)
 	g->rndr.move_speed = 0.1;
 }
 
+void	check_imgptr(t_game *g)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+		if (!g->rndr.tex.imgs[i].img_ptr)
+			exit_error(g, "File doesn't exist\n");
+}
+
 void	init_assets(t_game *g)
 {
 	int	x;
@@ -47,6 +57,7 @@ void	init_assets(t_game *g)
 			g->rndr.tex.imgs[SO].path, &x, &y);
 	g->rndr.tex.imgs[WE].img_ptr = mlx_xpm_file_to_image(g->rndr.mlx_ptr,
 			g->rndr.tex.imgs[WE].path, &x, &y);
+	check_imgptr(g);
 	g->rndr.tex.imgs[EA].addr = mlx_get_data_addr(g->rndr.tex.imgs[EA].img_ptr,
 			&g->rndr.tex.imgs[EA].bpp, &g->rndr.tex.imgs[EA].line_len,
 			&g->rndr.tex.imgs[EA].endian);
