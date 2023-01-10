@@ -17,7 +17,7 @@ void	init_ray_number(t_game *g)
 	g->ray.map = g->rndr.map.map;
 	g->ray.map_height = dbl_array_size(g->ray.map);
 	g->ray.map_width = get_longest_row(g->ray.map);
-	g->ray.fov = to_radian(60);
+	g->ray.fov = M_PI / 5;
 	g->ray.tile_size = 64;
 	g->ray.hit = 0;
 	g->ray.side = 0;

@@ -65,10 +65,10 @@ void	draw_map_x(t_game *g, int mapx, int mapy, int c)
 			&& g->ray.map[(int)(mapy / 64)][(int)(mapx / 64)] == '1')
 			img_pix_put(&g->rndr.img, z, c, 0x00ffff);
 		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
-			&& !(mapy % 32))
+			&& !(mapy % 16))
 			img_pix_put(&g->rndr.img, z, c, 0);
 		if (mapy / 64 < g->ray.map_height && mapx / 64 < g->ray.map_width
-			&& !(mapx % 32))
+			&& !(mapx % 16))
 			img_pix_put(&g->rndr.img, z, c, 0);
 		mapx++;
 		z++;
