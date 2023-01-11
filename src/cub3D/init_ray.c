@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
+/*   By: ftuncer <ftuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:37 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 12:15:33 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 17:03:25 by ftuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_ray_number(t_game *g)
 	g->ray.map = g->rndr.map.map;
 	g->ray.map_height = dbl_array_size(g->ray.map);
 	g->ray.map_width = get_longest_row(g->ray.map);
-	g->ray.fov = M_PI / 5;
+	g->ray.fov = M_PI / 3;
 	g->ray.tile_size = 64;
 	g->ray.hit = 0;
 	g->ray.side = 0;
@@ -50,5 +50,4 @@ void	init_ray(t_game *g)
 	get_player_pos(g);
 	init_ray_struct(g);
 	g->ray.render = g->rndr;
-	draw(g);
 }
