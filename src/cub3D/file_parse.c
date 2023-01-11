@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
+/*   By: ftuncer <ftuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:20 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/11 09:59:16 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 13:48:50 by ftuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	get_texture_and_map(t_game *g)
 		buffer = get_next_line(g->rndr.map.fd_cub);
 		if (!buffer)
 			break ;
-		if (!ft_strncmp(buffer, "\n", 1) && ft_strlen(buffer) == 1 && g->rndr.map.elem_count != 6)
+		if (!ft_strncmp(buffer, "\n", 1) && ft_strlen(buffer) == 1
+			&& g->rndr.map.elem_count != 6)
 		{
 			free(buffer);
 			continue ;

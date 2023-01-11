@@ -3,21 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
+/*   By: ftuncer <ftuncer@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:06:25 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 16:45:26 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 13:47:26 by ftuncer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+void	mouse_action(t_game *g)
+{
+	static int	temp_x;
+	static int	x;
+	static int	y;
+
+	mlx_mouse_get_pos(g->rndr.win_ptr, &x, &y);
+	if (x != temp_x)
+	{
+		if (x >= temp_x)
+			turn_right(g);
+		else
+			turn_left(g);
+		temp_x = x;
+	}
+	if (x >= WIN_WIDTH)
+		mlx_mouse_move(g->rndr.win_ptr, 0, y);
+	else if (x <= 0)
+		mlx_mouse_move(g->rndr.win_ptr, WIN_WIDTH, y);
+	else if (y >= WIN_HEIGHT)
+		mlx_mouse_move(g->rndr.win_ptr, x, 0);
+	else if (y <= 0)
+		mlx_mouse_move(g->rndr.win_ptr, x, WIN_HEIGHT);
+	mlx_mouse_hide();
+}
+
 int	loop(t_game *g)
 {
-	mlx_clear_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 	draw(g);
 	mlx_put_image_to_window(g->rndr.mlx_ptr,
 		g->rndr.win_ptr, g->rndr.img.img_ptr, 0, 0);
+	mouse_action(g);
 	return (1);
 }
 
