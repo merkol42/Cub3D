@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:06:46 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 14:17:28 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 09:39:11 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	exit_game(t_game *g)
 {
 	if (g && g->rndr.mlx_ptr && g->rndr.win_ptr)
 	{
+		mlx_clear_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 		mlx_destroy_window(g->rndr.mlx_ptr, g->rndr.win_ptr);
 		mlx_destroy_image(g->rndr.mlx_ptr, g->rndr.img.img_ptr);
 		free_texture(g);
-		mlx_destroy_display(g->rndr.mlx_ptr);
 		free(g->rndr.mlx_ptr);
 	}
 	if (g->rndr.map.fd_cub > STDERR_FILENO)

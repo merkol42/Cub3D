@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:43 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 16:45:20 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 09:59:23 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	move(t_game *g, int key)
 
 int	key_hook(int key, t_game *g)
 {
-	g->rndr.move_speed = 0.40;
 	if (key == KEY_RIGHT || key == KEY_LEFT)
 		turn_angle(g, key);
 	if (key == KEY_W || key == KEY_S)

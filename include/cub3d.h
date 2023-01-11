@@ -24,13 +24,13 @@
 #define FLOOR 0
 #define CEIL 1
 
-#define KEY_W 119 //13
-#define KEY_A 97 //0
-#define KEY_S 115 //1
-#define KEY_D 100 //2
-#define KEY_LEFT 65361 // 123
-#define KEY_RIGHT 65363 // 124
-#define ESC 65307 // 53
+#define KEY_W 13 //119
+#define KEY_A 0 //97
+#define KEY_S 1 //115
+#define KEY_D 2 //100
+#define KEY_LEFT 123 //65361
+#define KEY_RIGHT 124 //65363
+#define ESC 53 //65307
 
 
 enum tex_enum{

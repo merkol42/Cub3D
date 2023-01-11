@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:40 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 16:24:29 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 09:43:55 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	init_assets(t_game *g)
 	check_imgptr(g);
 	i = -1;
 	while (++i < 4)
-		g->rndr.tex.imgs[i].addr = mlx_get_data_addr(g->rndr.tex.imgs[i].img_ptr,
+		g->rndr.tex.imgs[i].addr = \
+			mlx_get_data_addr(g->rndr.tex.imgs[i].img_ptr,
 				&g->rndr.tex.imgs[i].bpp, &g->rndr.tex.imgs[i].line_len,
 				&g->rndr.tex.imgs[i].endian);
 }

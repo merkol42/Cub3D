@@ -6,7 +6,7 @@
 /*   By: merkol <merkol@42kocaeli.com.tr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:07:20 by merkol            #+#    #+#             */
-/*   Updated: 2023/01/10 16:14:16 by merkol           ###   ########.fr       */
+/*   Updated: 2023/01/11 09:59:16 by merkol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,8 @@ int	get_texture_and_map(t_game *g)
 		buffer = get_next_line(g->rndr.map.fd_cub);
 		if (!buffer)
 			break ;
-		if (!ft_strncmp(buffer, "\n", 1) && ft_strlen(buffer) == 1)
+		if (!ft_strncmp(buffer, "\n", 1) && ft_strlen(buffer) == 1 && g->rndr.map.elem_count != 6)
 		{
-			if (g->rndr.map.elem_count == 6)
-			{
-				g->rndr.map.gnl_buffer = buffer;
-				gnl_free(g->rndr.map.gnl_buffer, g->rndr.map.fd_cub);
-				exit_error(g, "Map Error!!\n");
-			}
 			free(buffer);
 			continue ;
 		}
@@ -109,7 +103,7 @@ void	file_parse(t_game	*g, char *cub)
 	get_texture_and_map(g);
 	g->rndr.map.res_width = get_longest_row(g->rndr.map.map);
 	g->rndr.map.res_height = dbl_array_size(g->rndr.map.map);
-	g->rndr.move_speed = (g->rndr.map.tile_size / 2) / 5;
+	g->rndr.move_speed = 0.20;
 	check_path(g);
 	check_map(g);
 }
